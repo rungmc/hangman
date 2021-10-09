@@ -6,7 +6,7 @@ class Game
   attr_accessor :filename, :answer, :guess, :attempts
 
   def initialize
-    @filename = nil
+    @save_slot = nil
     @answer = get_word
     @guess = []
     @attempts = 10

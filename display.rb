@@ -3,11 +3,11 @@ module Display
   # Shows title card and load/new game menu.
   def main_menu
     puts <<-HEREDOC
-                  **************************
-                  *** WELCOME TO HANGMAN ***
-                  **************************
+              **************************
+              *** WELCOME TO HANGMAN ***
+              **************************
 
-Enter \033[31mL\033[0m to load a saved game or anything else to start a new game.
+Enter \033[31mL\033[0m to load a saved game or anything else to continue.
 HEREDOC
   end
 
@@ -24,7 +24,7 @@ HEREDOC
   end
 
   def prompt_input
-    puts 'Guess a letter or type save to save:'
+    puts "Guess a letter or type \033[31msave\033[0m to save and quit:"
   end
 
   def invalid_input
@@ -36,6 +36,8 @@ HEREDOC
   end
 
   def you_lose
+    system "clear"
+    stage0
     puts "You lose! The answer was \033[31m#{@answer}\033[0m."
   end
 
