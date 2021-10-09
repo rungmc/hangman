@@ -1,5 +1,16 @@
 module Display
 
+  # Shows title card and load/new game menu.
+  def main_menu
+    puts <<-HEREDOC
+                  **************************
+                  *** WELCOME TO HANGMAN ***
+                  **************************
+
+Enter \033[31mL\033[0m to load a saved game or anything else to start a new game.
+HEREDOC
+  end
+
   # Chooses correct ASCII art for # of attempts left.
   def art_select
     send("stage#{@attempts}")

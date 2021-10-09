@@ -3,12 +3,19 @@ require_relative 'save'
 
 class Game
   include Display, Save
-  attr_accessor :answer, :guess, :attempts
+  attr_accessor :filename, :answer, :guess, :attempts
 
   def initialize
+    @filename = nil
     @answer = get_word
     @guess = []
     @attempts = 10
+
+    main_menu
+    input = gets.chomp
+    if input[0].downcase == 'l'
+      load_game
+    end
 
     until @attempts.zero? || won?
       game_loop
@@ -47,12 +54,12 @@ class Game
     end
   end
 
-  # Checks if all letters of answer have been checked.
+  # Checks if all letters of answer have been guessed.
   def won?
     @answer.split('').all? { |letter| @guess.include?(letter) }
   end
 
-  # Selects random 5-12 char, non-proper noun word from .txt dictionary.
+  # Selects random 5-12 char, non-proper noun word from txt dictionary.
   def get_word
     word_list = File.open('5desk.txt', 'r').readlines
     
